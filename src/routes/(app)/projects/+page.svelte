@@ -18,9 +18,15 @@
 	});
 
 	// Function to show the cards when the button is clicked
-	function handleGetCandidates() {
+	async function handleGetCandidates() {
 		showCards = true;
 		toast('Fetching Candidates...');
+
+		const res = await fetch('http://localhost:5000/predict', {
+			method: 'POST',
+
+			body: JSON.stringify({ language: 'HTML' })
+		});
 	}
 
 	const numberOfCards = 5; // Number of cards to display
@@ -30,11 +36,11 @@
 
 	// List of taglines for each person
 	const taglines = [
-		"Passionate Developer",
-		"Creative Designer",
-		"Innovative Strategist",
-		"Analytical Thinker",
-		"Detail-Oriented Manager"
+		'Passionate Developer',
+		'Creative Designer',
+		'Innovative Strategist',
+		'Analytical Thinker',
+		'Detail-Oriented Manager'
 	];
 
 	// Create an array of unique random ratings between 4.2 and 5.0 for the cards
@@ -169,10 +175,7 @@
 				transition:fly={{ x: -200, duration: 500, delay: index * 100 }}
 			>
 				<figure>
-					<img
-						src={imageUrls[index]}
-						alt="Image"
-					/>
+					<img src={imageUrls[index]} alt="Image" />
 				</figure>
 				<div class="card-body">
 					<h2 class="card-title text-sm">
@@ -180,7 +183,8 @@
 						<!-- Display the unique name here -->
 						<div class="badge badge-secondary">&#9733; {ratings[index]}</div>
 					</h2>
-					<p>{taglines[index]}</p> <!-- Personalized tagline for each person -->
+					<p>{taglines[index]}</p>
+					<!-- Personalized tagline for each person -->
 					<div class="card-actions justify-end">
 						<button class="btn btn-primary">Book Now</button>
 					</div>

@@ -65,6 +65,13 @@
 						<Icon icon="material-symbols:account-balance-outline-rounded" />
 						projects
 					</a>
+					<a
+						href="/freelancer"
+						class="btn btn-sm"
+						class:btn-active={$page.route.id === '/freelancer'}
+					>
+						freelancer
+					</a>
 				{:else}
 					<a href="/login" class="btn btn-sm" class:btn-active={$page.route.id === '/login'}>
 						<Icon icon="material-symbols:login-rounded" />
