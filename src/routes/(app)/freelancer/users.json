@@ -1,0 +1,32 @@
+[
+  {
+    "name": "Angela Yu",
+    "image": "https://cdn.sanity.io/images/tlr8oxjg/production/215bfd6c343fd01ff9e7b9b667e011e2f2de78e2-1456x816.png?w=3840&q=80&fit=clip&auto=format",
+    "rating": 4.9,
+    "description": "I will create a responsive website for your business"
+  },
+  {
+    "name": "John Doe",
+    "image": "https://cdn.sanity.io/images/tlr8oxjg/production/215bfd6c343fd01ff9e7b9b667e011e2f2de78e2-1456x816.png?w=3840&q=80&fit=clip&auto=format",
+    "rating": 4.8,
+    "description": "Expert in web development and design"
+  },
+  {
+    "name": "Jane Smith",
+    "image": "https://cdn.sanity.io/images/tlr8oxjg/production/215bfd6c343fd01ff9e7b9b667e011e2f2de78e2-1456x816.png?w=3840&q=80&fit=clip&auto=format",
+    "rating": 4.7,
+    "description": "Professional graphic designer with 5 years of experience"
+  },
+  {
+    "name": "Alice Johnson",
+    "image": "https://cdn.sanity.io/images/tlr8oxjg/production/215bfd6c343fd01ff9e7b9b667e011e2f2de78e2-1456x816.png?w=3840&q=80&fit=clip&auto=format",
+    "rating": 5.0,
+    "description": "Content writer and SEO expert"
+  },
+  {
+    "name": "Michael Brown",
+    "image": "https://cdn.sanity.io/images/tlr8oxjg/production/215bfd6c343fd01ff9e7b9b667e011e2f2de78e2-1456x816.png?w=3840&q=80&fit=clip&auto=format",
+    "rating": 4.6,
+    "description": "Digital marketing strategist and consultant"
+  }
+]

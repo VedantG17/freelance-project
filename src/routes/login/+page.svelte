@@ -9,10 +9,11 @@
 		<div class="text-center lg:text-left">
 			<h1 class="text-5xl font-bold">Login now!</h1>
 			<p class="py-6">
-				Seamlessly monitor your financial world with freelance platform, a dynamic personal finance
-				tracking marvel. It transforms chaos into clarity, effortlessly handling expenses,
-				investments, and cash flow. Unlock insights into your financial well-being and embark on a
-				journey of smart financial habits.
+				Seamlessly manage your freelance finances with our dynamic platform designed specifically
+				for freelancers. Transform financial chaos into clarity by effortlessly tracking your
+				income, expenses, projects, and cash flow all in one place. Gain valuable insights into your
+				earnings, optimize your budget, and take control of your financial future. Start building
+				smart financial habits and focus on what you do best—growing your freelance business.
 			</p>
 		</div>
 		<div class="card shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
