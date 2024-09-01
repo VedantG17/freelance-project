@@ -13,8 +13,8 @@ export const actions = {
 
 		const userId = locals.user?.id!;
 		const name = formData.get('name')?.toString().toUpperCase();
-		const desc = formData.get('desc')?.toString().toUpperCase();
-		const language = formData.get('lang')?.toString().toUpperCase();
+		const desc = formData.get('desc')?.toString();
+		const language = formData.get('lang')?.toString();
 		// current user as holder name in future
 
 		if (!name || !language) return fail(400, { message: 'Name and Languages are required' });

@@ -18,12 +18,12 @@
 	});
 
 	// Function to show the cards when the button is clicked
-	async function handleGetCandidates() {
+	async function handleGetCandidates(language: 'Python') {
 		toast('Fetching Candidates...');
 
 		const res = await fetch('http://localhost:5000/predict', {
 			method: 'POST',
-			body: JSON.stringify({ language: 'HTML' }),
+			body: JSON.stringify({ language }),
 			headers: { 'content-type': 'application/json' }
 		}).then((res) => res.json());
 
@@ -123,7 +123,10 @@
 				>
 					Copy all details
 				</button>
-				<button class="btn btn-outline" on:click={handleGetCandidates}>
+				<button
+					class="btn btn-outline"
+					on:click={() => handleGetCandidates(project?.language ?? 'Python')}
+				>
 					<Icon icon="material-symbols:download" /> Get Candidates
 				</button>
 			</div>
