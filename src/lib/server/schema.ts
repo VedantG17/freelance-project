@@ -30,10 +30,7 @@ export const projectTable = pgTable('projectTable', {
 	id: serial('id').primaryKey(),
 	name: text('name').notNull(),
 	desc: text('desc'),
-	languages: text('languages')
-		.array()
-		.notNull()
-		.default(sql`'{}'::text[]`),
+	language: text('language').notNull(),
 	userId: integer('userId')
 		.notNull()
 		.references(() => userTable.id, { onDelete: 'cascade' })

@@ -14,13 +14,13 @@ export const actions = {
 		const userId = locals.user?.id!;
 		const name = formData.get('name')?.toString().toUpperCase();
 		const desc = formData.get('desc')?.toString().toUpperCase();
-		const lang = formData.get('lang')?.toString().toUpperCase();
+		const language = formData.get('lang')?.toString().toUpperCase();
 		// current user as holder name in future
 
-		if (!name || !lang) return fail(400, { message: 'Name and Languages are required' });
+		if (!name || !language) return fail(400, { message: 'Name and Languages are required' });
 
 		try {
-			await db.insert(projectTable).values({ userId, name, desc, languages: [] });
+			await db.insert(projectTable).values({ userId, name, desc, language });
 			return { message: 'Project added successfully' };
 		} catch (e) {
 			return fail(500, { message: `Error adding Project: ${e}` });
@@ -34,12 +34,12 @@ export const actions = {
 		const id = Number(formData.get('id'));
 		const name = formData.get('name')?.toString().toUpperCase();
 		const desc = formData.get('desc')?.toString().toUpperCase();
-		const lang = formData.get('lang')?.toString().toUpperCase();
+		const language = formData.get('lang')?.toString().toUpperCase();
 
 		try {
 			await db
 				.update(projectTable)
-				.set({ name, desc, languages: [] })
+				.set({ name, desc, language })
 				.where(and(eq(projectTable.id, id), eq(projectTable.userId, locals.user?.id!)));
 			return { message: 'Project details updated successfully' };
 		} catch (e) {

@@ -11,7 +11,7 @@
 	$: if (form?.message) toast(form.message);
 
 	let addProject: HTMLDialogElement;
-	let showCards = false; // Reactive variable to control card visibility
+	let showCards = []; // Reactive variable to control card visibility
 
 	onMount(() => {
 		addProject = document.getElementById('addProject') as HTMLDialogElement;
@@ -19,14 +19,21 @@
 
 	// Function to show the cards when the button is clicked
 	async function handleGetCandidates() {
-		showCards = true;
 		toast('Fetching Candidates...');
 
 		const res = await fetch('http://localhost:5000/predict', {
 			method: 'POST',
+			body: JSON.stringify({ language: 'HTML' }),
+			headers: { 'content-type': 'application/json' }
+		}).then((res) => res.json());
 
-			body: JSON.stringify({ language: 'HTML' })
-		});
+		showCards = res.top_repositories;
+
+		// {
+		//   "top_repositories": [
+		// "tailwindcss"
+		//   ]
+		// }
 	}
 
 	const numberOfCards = 5; // Number of cards to display
@@ -89,7 +96,7 @@
 			</div>
 
 			<div class="p-4 pt-2 flex flex-col gap-2">
-				{#each [{ name: 'Description', value: project.desc }, { name: 'Languages', value: project.languages }, { name: "Holder's Name", value: data.user?.name ?? 'XYZ Company' }] as { name, value }}
+				{#each [{ name: 'Description', value: project.desc }, { name: 'Languages', value: project.language }, { name: "Holder's Name", value: data.user?.name ?? 'XYZ Company' }] as { name, value }}
 					<div class="flex gap-2 justify-between items-center">
 						<span class="uppercase text-sm">{name}:</span>
 						<button
@@ -154,7 +161,7 @@
 				<input type="text" class="input input-bordered" placeholder="Type here" name="desc" />
 			</label>
 			<label class="form-control">
-				<span class="label-text">Languages:</span>
+				<span class="label-text">Language:</span>
 				<input type="text" class="input input-bordered" placeholder="Type here" name="lang" />
 			</label>
 
@@ -167,29 +174,27 @@
 </dialog>
 
 <!-- Conditionally render the cards with animation -->
-{#if showCards}
-	<div class="flex gap-4 justify-center">
-		{#each Array(numberOfCards) as _, index (index)}
-			<div
-				class="card card-compact bg-base-100 w-60 shadow-xl mt-4"
-				transition:fly={{ x: -200, duration: 500, delay: index * 100 }}
-			>
-				<figure>
-					<img src={imageUrls[index]} alt="Image" />
-				</figure>
-				<div class="card-body">
-					<h2 class="card-title text-sm">
-						{names[index]}
-						<!-- Display the unique name here -->
-						<div class="badge badge-secondary">&#9733; {ratings[index]}</div>
-					</h2>
-					<p>{taglines[index]}</p>
-					<!-- Personalized tagline for each person -->
-					<div class="card-actions justify-end">
-						<button class="btn btn-primary">Book Now</button>
-					</div>
+<div class="flex gap-4 justify-center">
+	{#each showCards as sc, index}
+		<div
+			class="card card-compact bg-base-100 w-60 shadow-xl mt-4"
+			transition:fly={{ x: -200, duration: 500, delay: index * 100 }}
+		>
+			<!-- svelte-ignore a11y-img-redundant-alt -->
+			<img src={imageUrls[index]} alt="Image" />
+
+			<div class="card-body">
+				<h2 class="card-title text-sm">
+					{sc ?? names[index]}
+					<!-- Display the unique name here -->
+					<div class="badge badge-secondary">&#9733; {ratings[index]}</div>
+				</h2>
+				<p>{taglines[index]}</p>
+				<!-- Personalized tagline for each person -->
+				<div class="card-actions justify-end">
+					<button class="btn btn-primary">Book Now</button>
 				</div>
 			</div>
-		{/each}
-	</div>
-{/if}
+		</div>
+	{/each}
+</div>
